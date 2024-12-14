@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special To You</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #87CEEB, #FFFFFF);
+            overflow: hidden;
+        }
+
+        .centered-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+        }
+
+        .container {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .rose {
+            position: relative;
+            bottom: -200px;
+            width: 300px;
+            opacity: 0;
+            transition: bottom 3s ease-in-out, opacity ease-in-out;
+        }
+
+        .text {
+            position: absolute;
+            top: -50px;
+            font-size: 36px;
+            font-weight: bold;
+            color: #FF6347;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .text {
+                font-size: 28px;
+            }
+        }
+
+        .initial-text {
+            font-size: 25px;
+            font-weight: bold;
+            color: #FF6347;
+            text-align: center;
+        }
+
+        #playButton {
+            margin-top: 20px;
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <audio id="audio" loop>
+        <source src="perfect1.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="centered-content">
+        <div class="initial-text">I Have Something for you!!</div>
+        <button id="playButton" class="btn btn-danger btn-lg">
+            Klik Disini
+        </button>
+    </div>
+
+    <div class="container" id="roseContainer">
+        <img src="bunga.png" alt="Rose" class="rose" id="rose">
+        <div class="text" id="specialText">Special for You</div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById("playButton").addEventListener("click", function() {
+            console.log("Button clicked!");
+            var audio = document.getElementById("audio");
+            var roseContainer = document.getElementById("roseContainer");
+            var rose = document.getElementById("rose");
+            var specialText = document.getElementById("specialText");
+
+            audio.play().catch(function(error) {
+                console.log("Error: Audio failed to play.");
+            });
+
+            roseContainer.style.opacity = 1;
+            rose.style.opacity = 1;
+            rose.style.bottom = '0';
+            specialText.style.opacity = 1;
+
+            document.querySelector(".centered-content").style.display = "none";
+        });
+    </script>
+</body>
+</html>
